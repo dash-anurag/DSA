@@ -59,16 +59,30 @@ method 2: using a data structure called set that will keep the track of all the 
 we are using set because it helps in maintaining integrity.
 */
 
-
+bool usingUnsortedArray(int *arr,int size,int sum)
+{
+  unordered_set<int> comp;
+  for(int i=0;i<size;i++)
+  {
+    int target = sum - arr[i];
+    if(comp.find(target) != comp.end())
+    {
+      return true;
+    }
+    comp.insert(arr[i]);
+  }
+  return false;
+}
 
 int main(void)
 {
   // int arr[] = {1,2,3,9};
-  int arr[] = {1,2,4,4};
+  // int arr[] = {1,2,4,4};
+  int arr[] = {1, 2, 4, 5, 0, 2};
   int sum = 8;
   int size = sizeof(arr)/sizeof(arr[0]);
 
-  if(betterCheckForPairs(arr,size,sum))
+  if(usingUnsortedArray(arr,size,sum))
   {
     cout<<"True"<<endl;
   }
