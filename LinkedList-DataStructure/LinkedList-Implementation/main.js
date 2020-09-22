@@ -19,7 +19,7 @@ class LinkedList {
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
-    return this;
+    return this.printList();
   }
 
   prepend(value) {
@@ -27,16 +27,55 @@ class LinkedList {
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this;
+    return this.printList();
   }
 
   insert(value, index) {
-    const newNode = new Node(value);
-    if (index < this.length) {
-      return "Index out of bounds";
+    if (index >= this.length) {
+      return this.append(value);
     }
-    const temp = new Node();
+    if (index < 0) {
+      console.log("Insert at valid index!");
+      return this.printList();
+    }
+    if (index == 0) {
+      return this.prepend(value);
+    }
+    const newNode = new Node(value);
+
+    const beforeNode = this.traverseToIndex(index - 1);
+    const holdingPointer = beforeNode.next;
+    beforeNode.next = newNode;
+    newNode.next = holdingPointer;
+    this.length++;
+    return this.printList();
   }
+  remove(index) {
+    if (index < 0 || index == 0) {
+      console.log("Give valid index!");
+      return this.printList();
+    }
+    if(index > this.length){
+      console.log("Give valid index!");
+      return this.printList();
+    }
+    const beforeNode = this.traverseToIndex(index - 1);
+    const holdingPointer = beforeNode.next;
+    beforeNode.next = holdingPointer.next;
+    this.length--;
+    return this.printList();
+  }
+  traverseToIndex(index) {
+    let counter = 0;
+    let currentNode = this.head;
+
+    while (counter != index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
+    return currentNode;
+  }
+
   printList() {
     const array = [];
     let currentNode = this.head;
@@ -44,11 +83,19 @@ class LinkedList {
       array.push(currentNode.value);
       currentNode = currentNode.next;
     }
+    console.log(array);
   }
 }
 
 const myList = new LinkedList(10);
 
-console.log(myList.append(5));
-console.log(myList.append(16));
-console.log(myList.prepend(1));
+myList.append(5);
+myList.append(16);
+myList.prepend(1);
+myList.insert(99, 300);
+myList.printList();
+myList.insert(99, 2);
+myList.insert(100, -5);
+myList.remove(3);
+myList.insert(69, 0);
+myList.remove(99);
