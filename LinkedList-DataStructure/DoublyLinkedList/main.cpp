@@ -122,7 +122,7 @@ public:
       }
       else
       {
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < (index); i++)
         {
           temp = temp->next;
         }
@@ -183,19 +183,18 @@ int main(void)
   d.append(4);
   d.append(5);
 
-  // d.prepend(99);
-  // d.prepend(200); //200->99->2->1->3->4->5 # should be an output.
+  d.prepend(99);
+  d.prepend(200); //200->99->2->1->3->4->5 # should be an output.
 
-  // d.insert(1000, 2);
-  // d.insert(1000, 2);
-  // d.insert(5000, 1);
+  d.insert(1000, 2);
+  d.insert(5000, 1);
 
   d.print();
 
-  // d.remove(4);
-  // d.print();
+  d.remove(4);
+  d.print();
 
-  // d.reverse();
-  // d.print();
+  d.reverse();
+  d.print();
   return 0;
 }
