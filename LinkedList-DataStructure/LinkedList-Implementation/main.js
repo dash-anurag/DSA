@@ -50,6 +50,7 @@ class LinkedList {
     this.length++;
     return this.printList();
   }
+
   remove(index) {
     if (index < 0 || index == 0) {
       console.log("Give valid index!");
@@ -65,6 +66,7 @@ class LinkedList {
     this.length--;
     return this.printList();
   }
+
   traverseToIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -74,6 +76,26 @@ class LinkedList {
       counter++;
     }
     return currentNode;
+  }
+
+  reverse() {
+    if(!this.head.next) {
+      return this.head;
+    }
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+
+    while(second) {
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+
+    this.head.next = null;
+    this.head = first;
+    return this.printList();
   }
 
   printList() {
@@ -99,3 +121,4 @@ myList.insert(100, -5);
 myList.remove(3);
 myList.insert(69, 0);
 myList.remove(99);
+myList.reverse();
