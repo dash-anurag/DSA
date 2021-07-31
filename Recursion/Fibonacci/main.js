@@ -8,15 +8,12 @@ const fibonacci = (idx) => {
 };
 
 const advancedFibonacci = (idx) => {
-  let temp = new Array(idx + 2);
-  temp[0] = 0;
-  temp[1] = 1;
-
+  let arr = [0, 1];
   for (let i = 2; i <= idx; i++) {
-    temp[i] = temp[i - 1] + temp[i - 2];
+    arr.push(arr[i - 1] + arr[i - 2]);
   }
 
-  return temp[idx];
+  return arr[idx];
 };
 
 num = 100;
